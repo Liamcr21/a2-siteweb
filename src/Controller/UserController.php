@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class UserController extends AbstractController
 {
@@ -28,7 +29,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('plainPassword')->getData()));
 
-            $user->setRoles(['ROLE_AUTHOR']);
+            $user->setRoles(['ROLE_ADMIN']);
             
             $em->persist($user);
             $em->flush();
@@ -60,18 +61,25 @@ class UserController extends AbstractController
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 
-#[Route('/user/{username}/delete', name: 'app_delete_user', methods: ['POST'])]
-    public function delete(User $user, EntityManagerInterface $em): RedirectResponse
+    #[Route('/user/{username}/delete', name: 'app_delete_user', methods: ['POST'])]
+    public function delete(User $user, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator): RedirectResponse
     {
-        
+        // Vérifiez si l'utilisateur est connecté
+        if (!$this->getUser()) {
+            throw new AccessDeniedException('You are not logged in.');
+        }
+    
+        // Vérifiez si l'utilisateur actuel est autorisé à supprimer cet utilisateur
         if ($user !== $this->getUser()) {
             throw new AccessDeniedException('You are not allowed to delete this user.');
         }
-
+    
+        // Supprimez l'utilisateur
         $em->remove($user);
         $em->flush();
-
-        return $this->redirectToRoute('app_home');
+    
+        // Redirigez vers la route app_home
+        return new RedirectResponse($urlGenerator->generate('app_home'));
     }
 
     #[Route('/user/{username}', name: 'app_profile')]
