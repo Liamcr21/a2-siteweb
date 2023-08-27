@@ -30,10 +30,10 @@ class Article
     private ?string $featuredText = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+    private $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    private  $updatedAt = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
     private Collection $categories;

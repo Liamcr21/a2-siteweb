@@ -38,7 +38,7 @@ class ArticleCrudController extends AbstractCrudController
         yield AssociationField::new('featuredImage');
  
 
-        yield TextField::new('createdAt', 'Date de création')
+        yield TextField::new('createdAt', 'Date de création (ex : 28/08/2023)')
             ->formatValue(function ($value, $entity) {
                 return $value ? $value->format('Y-m-d ') : '';
             });
