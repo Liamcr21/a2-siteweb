@@ -7,15 +7,13 @@
 {% block body %}
  <div class="container mt-3">
     <div class="text-center">
-        {% if article.featuredVideo %}
-        <div class="d-flex justify-content-center align-items-center video-container"> 
-           <iframe width="560" height="315" src="{{ (article.featuredVideo.altText) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        {% else %}
+       
+      
+        
         <div class="d-flex justify-content-center align-items-center"> 
             <img src="{{ asset('uploads/' ~ article.featuredImage.filename) }}" class="small-img" alt="{{ article.title }}">
         </div>
-        {% endif %}
+      
 </div>
 
         <div class="row mt-5">
@@ -30,6 +28,11 @@
             <div class="col-10">
                 <div id="article-content" class="article-content">
                     <p>{{ article.content | raw }}</p>  
+                     {% if article.featuredVideo %}
+                       <div class="d-flex justify-content-center align-items-center video-container"> 
+           <iframe width="560" height="315" src="{{ (article.featuredVideo.altText) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+          {% endif %}
               
   </div>
             </div>
