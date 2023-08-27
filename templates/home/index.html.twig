@@ -28,10 +28,11 @@
     <div id="articles-list">
         <div class="row justify-content-center">
             {% for article in articles|slice(-3) %}
+                                <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="text-decoration-none d-flex flex-column align-items-center justify-content-center">
+
                 <div class="col-lg-3 col-md-6 single-fashion">
                 <div class="card mb-5 card-home-">
                 <div class="card-body">
-                    <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="text-decoration-none d-flex flex-column align-items-center justify-content-center">
                          {% if article.featuredImage %}
     <a href="{{ path('article_show', { 'slug': article.slug }) }}">
         <img src="asset/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.name }}" loading="lazy" width="270">
@@ -43,10 +44,11 @@
                        
                         <h3 class="card-title mt-2">{{ article.title }}</h3>
                         <p class="">{{ article.featuredText }}</p>
-                    </a>
+                  
                 </div>
                 </div>
                 </div>
+                  </a>
             {% endfor %}
         </div>
         <div class="text-center mt-3">
