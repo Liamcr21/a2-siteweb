@@ -8,7 +8,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use Symfony\Component\Validator\Constraints\File;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\Model\FileUploadState;
 use Symfony\Component\Filesystem\Filesystem;
@@ -35,18 +34,9 @@ class MediaCrudController extends AbstractCrudController
         yield TextField::new('altText', 'Texte Alternatif');
 
         $imageField = ImageField::new('filename', 'Média')
-        ->setBasePath($uploadsDir)
-        ->setUploadDir($mediasDir)
-        ->setUploadedFileNamePattern('[slug]-[uuid].[extension]')
-        ->setFormTypeOptions([
-            'constraints' => [
-                new File([
-                    'maxSize' => '420M',  
-                    'maxSizeMessage' => 'Le fichier est trop volumineux. Taille maximale autorisée : 20 MiB.',
-                ]),
-            ],
-        ]);
-
+            ->setBasePath($uploadsDir)
+            ->setUploadDir($mediasDir)
+            ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
 
         if (Crud::PAGE_EDIT == $pageName) {
             $imageField->setRequired(false);
