@@ -29,11 +29,11 @@ class Article
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $featuredText = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private $createdAt = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private  $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
     private Collection $categories;
@@ -108,15 +108,15 @@ class Article
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    
+    public function setCreatedAt(?string $createdAt): static
     {
         $this->createdAt = $createdAt;
-
+    
         return $this;
     }
 
