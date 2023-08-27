@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui suis-je ? {% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-5">
+<h1> Qui suis-je ? </h1>
+<hr>
+  <div class="row">
+    <div class="col-md-4 d-flex align-items-center">
+      <img src="{{ asset('images/logo-nav.png') }}" class="img-fluid" alt="Image">
+    </div>
+    <div class="col-md-8 d-flex align-items-center">
+      <p>Je suis Liam, un étudiant passionné de développement. J'ai lancé ce site pour partager des tutoriels qui aideront tant les étudiants que les professionnels dans le domaine du développement. Mon objectif est de simplifier les concepts complexes et de rendre l'apprentissage accessible à tous.
+
+Rejoignez-moi dans cette aventure d'apprentissage mutuel !</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

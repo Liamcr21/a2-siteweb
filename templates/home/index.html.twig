@@ -1,0 +1,180 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+
+</head>
+<body>
+
+<div class="header" style="background-image: url('{{ asset('images/dev.jpg') }}');">
+  <div class="container">
+    <h1>LCR TUTO</h1>
+    <h4 class="text-center  text-white" >Explorez l'Art du Développement Web Pas à Pas</h4>
+    <a href="{{ path('app_tutoriel')}}" class=" text-decoration-none btn btn-1" style="padding:5px; padding-left:40px;padding-right:40px;">Nos tutoriels</a>
+  </div>
+</div>
+
+ <main>
+ 
+      <div class="container">
+
+
+
+<div class="col-md-12 mt-5 mb-5">
+     <h2 class="mb-3 pb-2 fst-italic text-center">Nos derniers tutoriels </h2>
+
+    <div id="articles-list">
+        <div class="row justify-content-center">
+            {% for article in articles|slice(-3) %}
+                <div class="col-lg-3 col-md-6 single-fashion">
+                <div class="card mb-5 card-home-">
+                <div class="card-body">
+                    <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="text-decoration-none d-flex flex-column align-items-center justify-content-center">
+                         {% if article.featuredImage %}
+    <a href="{{ path('article_show', { 'slug': article.slug }) }}">
+        <img src="asset/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}" loading="lazy" width="270">
+    </a>
+{% else %}
+    <img src="{{ asset('images/logo-nav.png') }}" alt="Logo par défaut" loading="lazy" width="270">
+{% endif %}
+                        <p>Le : {{ article.createdAt|date('d/m/Y') }}</p>
+                       
+                        <h3 class="card-title mt-2">{{ article.title }}</h3>
+                        <p class="">{{ article.featuredText }}</p>
+                    </a>
+                </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{{ path('app_tutoriel')}}" class="text-decoration-none btn-1 btn">Voir tous nos tutoriels</a>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<section id="features" class="features mt-4 mb-5">
+  <div class="container">
+    <h2 class="pb-4 mb-4 fst-italic text-center">Nos différentes catégories </h2>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-6 col-6">
+        <div class="icon-box">
+          <i class="fas fa-play-circle"></i>
+          <h3><a href="{{ path('category_show', {'slug': 'tutoriel-video'}) }}">Vidéo</a></h3>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="icon-box">
+          <i class="far fa-file-alt"></i>
+       
+<h3><a href="{{ path('category_show', {'slug': 'tutoriel-texte'}) }}">Texte</a></h3>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="fas fa-code"></i>
+          <h3><a href="{{ path('category_show', {'slug': 'tutoriel-php'}) }}">PHP</a></h3>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6 mt-4 mt-lg-0">
+        <div class="icon-box">
+          <i class="fas fa-cogs"></i>
+          <h3><a href="{{ path('category_show', {'slug': 'tutoriel-symfony'}) }}">Symfony</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta" class="cta mt-5 mb-5" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('{{ asset('images/like.jpg') }}');">
+        <div class="text-center">
+          <h2 class="text-white">Réseaux sociaux</h2>
+          <a class="cta-btn btn btn-1" href="https://www.instagram.com/"> <i class="fab fa-instagram"></i> - Instagram</a><a class="ml-1 cta-btn btn-1 btn" href="https://www.tiktok.com/fr/">  <i class="fab fa-tiktok"></i> - Tiktok</a>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="container">
+
+        <div class="section-title text-center mt-5 mb-5">
+          <h2>F.A.Q</h2>
+          <h3>Questions fréquentes :</h3>
+
+        </div>
+
+        <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <p> Les tutoriels sont-ils gratuits ?</p>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>Oui, tous nos tutoriels sont totalement gratuits. Nous croyons en l'accès à l'apprentissage pour tous.</p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <p>   Puis-je contribuer en soumettant mes propres tutoriels ?</p>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+       <p>   Actuellement, nous ne proposons pas de soumission de tutoriels par les utilisateurs, mais nous apprécions l'intérêt. Restez à l'écoute pour d'éventuelles mises à jour.</p>
+      </div>
+    </div>
+  </div>
+   <div class="accordion-item">
+    <h2 class="accordion-header" id="headinga">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsea" aria-expanded="false" aria-controls="collapsea">
+     <p>  Comment sont sélectionnés les sujets de vos tutoriels ?</p>
+      </button>
+    </h2>
+    <div id="collapsea" class="accordion-collapse collapse" aria-labelledby="headinga" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+       <p>    Nous choisissons nos sujets de tutoriels en fonction des tendances actuelles du développement web et des demandes fréquentes de nos utilisateurs.</p>
+      </div>
+    </div>
+  </div>
+   <div class="accordion-item">
+    <h2 class="accordion-header" id="headingb">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseb" aria-expanded="false" aria-controls="collapseb">
+       <p>  Puis-je utiliser vos tutoriels dans mes projets personnels ?</p>
+      </button>
+    </h2>
+    <div id="collapseb" class="accordion-collapse collapse" aria-labelledby="headingb" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+     <p>     Oui, vous êtes libre d'utiliser les connaissances acquises à partir de nos tutoriels dans vos projets personnels ou professionnels.</p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <p>   Les tutoriels sont-ils adaptés aux débutants ?
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      <p>   Oui, nous avons une variété de tutoriels, certains sont conçus spécialement pour les débutants, avec des explications détaillées et des exemples simples.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </section>
+ 
+</main>
+{% endblock %}

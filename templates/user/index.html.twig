@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.username|capitalize }}{% endblock %}
+
+{% block body %}
+
+
+<section style="">
+    <div class="container py-5">
+   
+      <div class="row">
+        <div class="col-lg-4" >
+          <div class="card mb-4">
+            <div class="card-body text-center" style="background-color: #8C52FF; color:white">
+              <img src="{{ asset('images/icone-user.png') }}" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h3 class="my-3 text-white">{{ user.username|capitalize }}</h3>
+               <p>
+           
+     
+          {% if isUserAdmin() %}
+          <p class="text-muted mb-1"> Vous êtes un administrateur.</p>
+           
+        {% elseif isUserAuthor() %}
+              <p class="text-muted mb-1"> Vous êtes un lecteur.</p>
+        {% endif %}
+    </p>
+                   <p class="text-white">Nombre de tutoriels consultés : {{ recentlyViewedArticles|length }}</p>
+
+              <div class="d-flex justify-content-center mt-2 mb-2">
+                <a href="{{ path('app_logout') }}" class="btn btn-2">Se déconnecter</a>
+              </div>
+               <div class="d-flex justify-content-center mt-2 mb-2">
+<form action="{{ path('app_delete_user', {'username': user.username}) }}" method="post">
+    <button type="submit" class="btn btn-danger">Supprimer mon compte</button>
+</form>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+
+
+
+        
+        <div class="col-lg-8">
+            <div class="card mb-4 p-5" style="border:1px solid #8C52FF">
+                <h2>
+                    {% if recentlyViewedArticles|length == 1 %} 
+                    {% else %}
+                        Tutoriels consultés récemment :
+                    {% endif %}
+                </h2>
+                {% if recentlyViewedArticles is empty %}
+                    <p>Aucun tutoriel consulté récemment.</p>
+                {% else %}
+                    <ul class="list-unstyled">
+                       
+                        
+                        {% for articleView in recentlyViewedArticles %}
+                            <li>
+                                <a class="text-decoration-none" href="{{ path('article_show', { 'slug': articleView.article.slug }) }}">
+                                    <div class="row mt-2 mb-5">
+                                             
+                                        <div class="col-md-9">
+                                            <div class="text-article-profile">
+                                                <h3>{{ articleView.article.title }}</h3>
+                                                <p class="text-normal">(consulté le {{ articleView.viewedAt|date('d/m/Y') }})</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+                    
+                    
+                {% endif %}
+            </div>
+        </div>
+
+        
+
+
+       
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
