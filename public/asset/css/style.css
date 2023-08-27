@@ -214,6 +214,9 @@ a,p{
 height: 380px;
 }
 
+.img-item{
+    width: 300px;
+}
 @media (max-width: 768px) {
     .img-article-profile{
         height: 350px;
@@ -229,5 +232,8 @@ height: 380px;
     height: 430px;
 }
     
-    
+.img-item{
+    margin-top: 20px;
+    width: 150px;
+}
   }
