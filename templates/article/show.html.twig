@@ -22,7 +22,7 @@
         <div class="row mt-5">
             <div class="col">
                 <h1 class="article-title">{{ article.title }}</h1>
-                 <p>Le : {{ article.createdAt|date('d/m/Y') }} </p> <p class="mt-2 mb-2">  {% for category in article.categories %}   <span style="background-color: {{ category.color }}; padding: 5px; color:white">{{ category.name }}</span> </p>{% endfor %}
+                 <p>Le : {{ article.createdAt }} </p> <p class="mt-2 mb-2">  {% for category in article.categories %}   <span style="background-color: {{ category.color }}; padding: 5px; color:white">{{ category.name }}</span> </p>{% endfor %}
                 <hr>
             </div>
         </div>
