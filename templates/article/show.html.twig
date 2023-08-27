@@ -5,13 +5,12 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
+
  <div class="container mt-3">
     <div class="text-center">
         {% if article.featuredVideo %}
         <div class="d-flex justify-content-center align-items-center video-container"> 
-            <video controls class="small-video">
-                <source src="{{ asset('uploads/' ~ article.featuredVideo.filename) }}" type="video/mp4">
-            </video>
+           <iframe width="560" height="315" src="{{ asset('uploads/' ~ article.featuredVideo.altText) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         {% else %}
         <div class="d-flex justify-content-center align-items-center"> 

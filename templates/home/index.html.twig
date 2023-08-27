@@ -34,12 +34,12 @@
                     <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="text-decoration-none d-flex flex-column align-items-center justify-content-center">
                          {% if article.featuredImage %}
     <a href="{{ path('article_show', { 'slug': article.slug }) }}">
-        <img src="asset/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}" loading="lazy" width="270">
+        <img src="asset/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.name }}" loading="lazy" width="270">
     </a>
 {% else %}
     <img src="{{ asset('images/logo-nav.png') }}" alt="Logo par défaut" loading="lazy" width="270">
 {% endif %}
-                        <p>Le : {{ article.createdAt|date('d/m/Y') }}</p>
+                        <p>Le : {{ article.createdAt }}</p>
                        
                         <h3 class="card-title mt-2">{{ article.title }}</h3>
                         <p class="">{{ article.featuredText }}</p>

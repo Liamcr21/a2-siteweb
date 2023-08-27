@@ -31,7 +31,7 @@ class MediaCrudController extends AbstractCrudController
 
         yield TextField::new('name');
 
-        yield TextField::new('altText', 'Texte Alternatif');
+        yield TextField::new('altText', 'lien Youtube');
 
         $imageField = ImageField::new('filename', 'Média')
             ->setBasePath($uploadsDir)
