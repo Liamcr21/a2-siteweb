@@ -79,7 +79,7 @@ class UserController extends AbstractController
         $em->flush();
     
         
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_logout');
     }
 
     #[Route('/user/{username}', name: 'app_profile')]
