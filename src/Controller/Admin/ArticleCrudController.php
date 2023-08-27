@@ -6,7 +6,7 @@ use App\Entity\Article;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextBlockField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -37,9 +37,14 @@ class ArticleCrudController extends AbstractCrudController
 
         yield AssociationField::new('featuredImage');
  
- 
 
-        yield DateField::new('createdAt', 'Date de création');
+        yield TextField::new('createdAt', 'Date de création')
+            ->formatValue(function ($value, $entity) {
+                return $value ? $value->format('Y-m-d ') : '';
+            });
+        
+
+        
 
     }
     
