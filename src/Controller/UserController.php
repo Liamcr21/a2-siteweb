@@ -62,24 +62,24 @@ class UserController extends AbstractController
     }
 
     #[Route('/user/{username}/delete', name: 'app_delete_user', methods: ['POST'])]
-    public function delete(User $user, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator): RedirectResponse
+    public function delete(User $user, EntityManagerInterface $em, ): RedirectResponse
     {
-        // Vérifiez si l'utilisateur est connecté
+        
         if (!$this->getUser()) {
             throw new AccessDeniedException('You are not logged in.');
         }
     
-        // Vérifiez si l'utilisateur actuel est autorisé à supprimer cet utilisateur
+       
         if ($user !== $this->getUser()) {
             throw new AccessDeniedException('You are not allowed to delete this user.');
         }
     
-        // Supprimez l'utilisateur
+        
         $em->remove($user);
         $em->flush();
     
-        // Redirigez vers la route app_home
-        return new RedirectResponse($urlGenerator->generate('app_home'));
+        
+        return $this->redirectToRoute('app_home');
     }
 
     #[Route('/user/{username}', name: 'app_profile')]
