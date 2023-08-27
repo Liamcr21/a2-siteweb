@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-{{ rightCol ?? 7 }} pt-3">
         <p>
-                Le : {{ article.createdAt|date('d/m/Y') }}  </p> 
+                Le : {{ article.createdAt }}  </p> 
             <h2 class="article-title">
                 <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="text-decoration-none">{{ article.title }}</a>
             </h2>
