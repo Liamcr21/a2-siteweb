@@ -28,9 +28,10 @@
     <div id="articles-list">
         <div class="row justify-content-center">
             {% for article in articles|slice(-3) %}
-                                <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="text-decoration-none d-flex flex-column align-items-center justify-content-center">
 
                 <div class="col-lg-3 col-md-6 single-fashion">
+                                                <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="text-decoration-none d-flex flex-column align-items-center justify-content-center">
+
                 <div class="card mb-5 card-home-">
                 <div class="card-body">
                          {% if article.featuredImage %}
@@ -47,8 +48,9 @@
                   
                 </div>
                 </div>
+                                  </a>
+
                 </div>
-                  </a>
             {% endfor %}
         </div>
         <div class="text-center mt-3">
