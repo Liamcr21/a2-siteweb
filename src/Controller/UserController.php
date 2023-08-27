@@ -34,7 +34,7 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('user/register.html.twig', [
@@ -62,25 +62,19 @@ class UserController extends AbstractController
     }
 
     #[Route('/user/{username}/delete', name: 'app_delete_user', methods: ['POST'])]
-    public function delete(User $user, EntityManagerInterface $em, ): RedirectResponse
-    {
-        
-        if (!$this->getUser()) {
-            throw new AccessDeniedException('You are not logged in.');
-        }
-    
-       
-        if ($user !== $this->getUser()) {
-            throw new AccessDeniedException('You are not allowed to delete this user.');
-        }
-    
-        
-        $em->remove($user);
-        $em->flush();
-    
-        
-        return $this->redirectToRoute('app_logout');
+public function deleteUser(User $user, EntityManagerInterface $em): Response
+{
+    if ($this->getUser() !== $user) {
+        throw new AccessDeniedException('You are not authorized to delete this user.');
     }
+
+    $em->remove($user);
+    $em->flush();
+
+    // You might want to redirect to a different page after deletion
+    return $this->redirectToRoute('app_home');
+}
+
 
     #[Route('/user/{username}', name: 'app_profile')]
     public function index(User $user, UserArticleViewRepository $userArticleViewRepository): Response

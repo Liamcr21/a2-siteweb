@@ -32,6 +32,20 @@
     background-color: #8C52FF;
     color: white !important;
 }
+
+
+.btn-3{
+    border: 1px solid #8C52FF;
+    background-color: white;
+    color: #8C52FF;
+    font-family: 'tomorrow' , sans-serif; 
+}
+
+.btn-3:hover{
+    border: 1px solid white;
+    background-color: #8C52FF;
+    color: white !important;
+}
 h1,h2,h3,h4,h5,h6{
     font-family: 'horta' , sans-serif; 
     font-weight: bold; 
